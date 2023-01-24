@@ -1,0 +1,257 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/tile-formatting.schema.json",
+  "height": 210,
+  "width": 254,
+  "hideSelection": false,
+  "fillHorizontally": true,
+  "formatter": {
+    "elmType": "div",
+    "attributes": {
+      "class": "sp-card-container"
+    },
+    "children": [
+      {
+        "elmType": "button",
+        "attributes": {
+          "class": "sp-card-defaultClickButton",
+          "role": "presentation"
+        },
+        "customRowAction": {
+          "action": "defaultClick"
+        }
+      },
+      {
+        "elmType": "div",
+        "attributes": {
+          "class": "ms-bgColor-white sp-css-borderColor-neutralLight sp-card-borderHighlight sp-card-subContainer"
+        },
+        "children": [
+          {
+            "elmType": "div",
+            "attributes": {
+              "class": "sp-card-previewColumnContainer"
+            },
+            "children": [
+              {
+                "elmType": "div",
+                "style": {
+                  "display": "flex"
+                },
+                "children": [
+                  {
+                    "elmType": "p",
+                    "style": {
+                      "font-weight": "bold"
+                    },
+                    "attributes": {
+                      "class": "sp-card-userEmptyText"
+                    },
+                    "txtContent": "=if(length([$EmployeesName]) == 0, [$Title], '')"
+                  },
+                  {
+                    "forEach": "personIterator in [$EmployeesName]",
+                    "elmType": "a",
+                    "attributes": {
+                      "class": "=if(loopIndex('personIterator') >= 5, 'sp-card-userContainer', 'sp-card-userContainer sp-card-keyboard-focusable')"
+                    },
+                    "style": {
+                      "display": "=if(loopIndex('personIterator') >= 5, 'none', '')"
+                    },
+                    "children": [
+                      {
+                        "elmType": "img",
+                        "defaultHoverField": "[$personIterator]",
+                        "attributes": {
+                          "src": "=getUserImage([$personIterator.email], 'S')",
+                          "title": "[$personIterator.title]",
+                          "class": "sp-card-userThumbnail"
+                        },
+                        "style": {
+                          "display": "=if(length([$EmployeesName]) > 5 && loopIndex('personIterator') >= 4, 'none', '')"
+                        }
+                      },
+                      {
+                        "elmType": "div",
+                        "attributes": {
+                          "class": "ms-bgColor-neutralLight ms-fontColor-neutralSecondary sp-card-userOthers"
+                        },
+                        "style": {
+                          "display": "=if(length([$EmployeesName]) > 5 && loopIndex('personIterator') == 4, '', 'none')"
+                        },
+                        "customCardProps": {
+                          "formatter": {
+                            "elmType": "div",
+                            "attributes": {
+                              "class": "sp-card-personCallout"
+                            },
+                            "children": [
+                              {
+                                "forEach": "personIterator in [$EmployeesName]",
+                                "elmType": "div",
+                                "attributes": {
+                                  "class": "sp-card-userContainer sp-card-userCustomCard"
+                                },
+                                "style": {
+                                  "display": "=if(loopIndex('personIterator') < 4, 'none', '')"
+                                },
+                                "children": [
+                                  {
+                                    "elmType": "img",
+                                    "defaultHoverField": "[$personIterator]",
+                                    "attributes": {
+                                      "src": "=getUserImage([$personIterator.email], 'S')",
+                                      "title": "[$personIterator.title]",
+                                      "class": "sp-card-userThumbnail"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "openOnEvent": "hover"
+                        },
+                        "children": [
+                          {
+                            "elmType": "span",
+                            "txtContent": "='+' + toString(length([$EmployeesName]) - (4))"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "elmType": "div",
+                    "attributes": {
+                      "class": "sp-card-userTitle"
+                    },
+                    "style": {
+                      "display": "=if(length([$EmployeesName]) == 1, '', 'none')",
+                      "font-weight": "bold",
+                      "word-break": "break-all",
+                      "white-space": "nowrap"
+                    },
+                    "defaultHoverField": "[$personIterator]",
+                    "txtContent": "[$Title]"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "elmType": "p",
+            "attributes": {
+              "title": "[$Position]",
+              "class": "ms-fontColor-neutralPrimary sp-card-content "
+            },
+            "txtContent": "=if ([$Position] == '', '–', [$Position])",
+            "style": {
+              "margin": "0 0 0 14px",
+              "font-weight": "bold"
+            }
+          },
+          {
+            "elmType": "img",
+            "attributes": {
+              "src": "https://www.pinkvilla.com/imageresize/active_and_receptive_zodiac_signs.jpg?width=752&t=pvorg"
+            },
+            "style": {
+              "position": "absolute",
+              "z-index": "0",
+              "opacity": "0.5",
+              "width": "400px",
+              "margin": "90px 0 0 20px",
+              "display": "none"
+            }
+          },
+          {
+            "elmType": "div",
+            "style": {
+              "display": "=if([$HasBirthday.displayValue]=='1','','none')",
+              "position": "absolute"
+            },
+            "children": [
+              {
+                "elmType": "img",
+                "attributes": {
+                  "alt": "fireworks",
+                  "src": "https://cutewallpaper.org/24/transparent-fireworks-gif/via-giphy-fireworks-gif-overlays-picsart-fireworks-animation.gif"
+                },
+                "style": {
+                  "max-width": "100px",
+                  "margin": "0 0 0 150px"
+                }
+              },
+              {
+                "elmType": "img",
+                "attributes": {
+                  "alt": "happy birthday",
+                  "src": "https://i.pinimg.com/originals/89/53/6e/89536e577434c8f796baa6a1ca63adaa.gif"
+                },
+                "style": {
+                  "max-width": "100px",
+                  "margin": "-30px 0 0 150px"
+                }
+              },
+              {
+                "elmType": "img",
+                "attributes": {
+                  "alt": "birthday cake",
+                  "src": "https://cdn.dribbble.com/users/1007500/screenshots/3623450/cake_01.gif"
+                },
+                "style": {
+                  "max-width": "100px",
+                  "margin": "-10px 0 0 150px"
+                }
+              }
+            ]
+          },
+          {
+            "elmType": "div",
+            "attributes": {
+              "class": "sp-card-displayColumnContainer"
+            },
+            "children": [
+              {
+                "elmType": "p",
+                "attributes": {
+                  "class": "ms-fontColor-neutralSecondary sp-card-label"
+                },
+                "txtContent": "[!Birthday.DisplayName]"
+              },
+              {
+                "elmType": "p",
+                "attributes": {
+                  "title": "=if ([$Birthday.displayValue] == '', '–', [$Birthday.displayValue])",
+                  "class": "ms-fontColor-neutralPrimary sp-card-content sp-card-highlightedContent",
+                  "role": "heading",
+                  "aria-level": "3"
+                },
+                "txtContent": "= [$Day] + if([$Month]=='1', ' January', if([$Month]=='2', ' February', if([$Month]=='3', ' March', if([$Month]=='4', ' April', if([$Month]=='5', ' May', if([$Month]=='6', ' June', if([$Month]=='7', ' July', if([$Month]=='8', ' August', if([$Month]=='9', ' September', if([$Month]=='10', ' October', if([$Month]=='11', ' November', if([$Month]=='12', ' December', 'none'))))))))))))"
+              },
+              {
+                "elmType": "p",
+                "attributes": {
+                  "class": "ms-fontColor-neutralSecondary sp-card-label"
+                },
+                "style": {
+                  "margin": "10px 0 0 0"
+                },
+                "txtContent": "Zodiac"
+              },
+              {
+                "elmType": "p",
+                "attributes": {
+                  "title": "Zodiac",
+                  "class": "ms-fontColor-neutralPrimary sp-card-content sp-card-highlightedContent",
+                  "role": "heading",
+                  "aria-level": "3"
+                },
+                "txtContent": "=if((Number([$Day])<=19 && Number([$Month])==1), 'Capricorn', if((Number([$Day])>=20 && Number([$Month])==1) || (Number([$Day])<=18 && Number([$Month])==2), 'Aquarius', if((Number([$Day])>=19 && Number([$Month])==2) || (Number([$Day])<=20 && Number([$Month])==3), 'Pisces', if((Number([$Day])>=21 && Number([$Month])==3) || (Number([$Day])<=19 && Number([$Month])==4), 'Aries', if((Number([$Day])>=20 && Number([$Month])==4) || (Number([$Day])<=20 && Number([$Month])==5), 'Taurus', if((Number([$Day])>=21 && Number([$Month])==5) || (Number([$Day])<=20 && Number([$Month])==6), 'Gemini', if((Number([$Day])>=21 && Number([$Month])==6) || (Number([$Day])<=22 && Number([$Month])==7), 'Cancer', if((Number([$Day])>=23 && Number([$Month])==7) || (Number([$Day])<=22 && Number([$Month])==8), 'Leo', if((Number([$Day])>=23 && Number([$Month])==8) || (Number([$Day])<=22 && Number([$Month])==9), 'Virgo', if((Number([$Day])>=23 && Number([$Month])==9) || (Number([$Day])<=22 && Number([$Month])==10), 'Libra', if((Number([$Day])>=23 && Number([$Month])==10) || (Number([$Day])<=21 && Number([$Month])==11), 'Scorpio', if((Number([$Day])>=22 && Number([$Month])==11) || (Number([$Day])<=21 && Number([$Month])<=12), 'Sagittarius', 'Capricorn'))))))))))))"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
